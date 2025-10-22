@@ -1,7 +1,16 @@
 [package]
 name = "BlockHorizon-blockchain"
 version = "0.1.0"
+authors = ["kryptonkn <artemovandrej941@gmail.com>"]
 edition = "2024"
+
+[lib]
+name = "BlockHorizonLib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "blockchain"
+path = "src/main.rs"
 
 [dependencies]
 hex = "0.4.3"
