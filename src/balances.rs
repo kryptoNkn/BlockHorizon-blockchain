@@ -24,14 +24,14 @@ impl Pallet {
     // and that no mathematical overflows occur
     pub fn transfer(
         &mut self,
-        caller: &str,
+        from: &str,
         to: &str,
         amount: u128,
     ) -> Result<(), &'static str> {
-        let caller_balance = self.balance(caller);
+        let from_balance = self.balance(from);
         let to_balance = self.balance(to);
 
-        let new_caller_balance = caller_balance
+        let new_from_balance = from_balance
             .checked_sub(amount)
             .ok_or("Insufficient balance")?;
 
@@ -40,9 +40,40 @@ impl Pallet {
             .ok_or("Overflow when adding to balance")?;
 
         // update balances
-        self.set_balance(caller, new_caller_balance);
+        self.set_balance(from, new_from_balance);
         self.set_balance(to, new_to_balance);
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn init_balance() {
+        let mut pallet = Pallet::new();
+
+        assert_eq!(pallet.balance("alice"), 0);
+        pallet.set_balance("alice", 100);
+        assert_eq!(pallet.balance("alice"), 100);
+        assert_eq!(pallet.balance("bob"), 0);
+    }
+
+    #[test]
+    fn transfer_balance() {
+        let mut pallet = Pallet::new();
+
+        let alice = "alice";
+        let bob = "bob";
+
+        assert_eq!(pallet.balance(alice), 0);
+        pallet.set_balance(alice, 100);
+
+        pallet.transfer(alice, bob, 90).unwrap();
+
+        assert_eq!(pallet.balance(alice), 10);
+        assert_eq!(pallet.balance(bob), 90);
     }
 }
