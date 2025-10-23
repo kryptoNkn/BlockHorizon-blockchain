@@ -1,4 +1,4 @@
-use BlockHorizon_blockchain::Block;
+use BlockHorizonLib::Block;
 
 fn main() {
     let block = Block::new();
