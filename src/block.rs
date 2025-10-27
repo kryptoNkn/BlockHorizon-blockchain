@@ -68,3 +68,5 @@ impl Hashable for Block {
 pub fn check_difficulty(hash: &BlockHash, difficulty: u128) -> bool {
     difficulty > difficulty_bytes_as_u128(&hash)
 }
+
+// continue 
