@@ -15,6 +15,14 @@ impl BlockChain {
                 return false;
             } else if i != 0 {
                 // Not genesis block
+                let prev_block = &self.blocks[i - 1];
+                if block.timestamp <= prev_block.timestamp {
+                    println!("Time did not increase");
+                    return false;
+                } else if block.prev_block_hash != prev_block.hash {
+                    println!("Hash mismatch");
+                    return false;
+                }
             } else {
                 // Genesis block
                 if block.prev_block_hash != vec![0; 32] {
