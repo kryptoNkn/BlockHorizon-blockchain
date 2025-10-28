@@ -17,7 +17,7 @@ fn main() {
     println!("Verify: {}", &blockchain.verify());
 
     for i in 1..=10 {
-        let mut block = Block::new(i,0, last_hash ,0,"Another 
+        let mut block = Block::new(i,now(), last_hash ,0,"Another 
         block!".to_owned(), difficulty);
 
         block.mine();
