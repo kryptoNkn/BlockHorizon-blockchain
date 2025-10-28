@@ -10,7 +10,9 @@ impl BlockChain {
             if block.index != i as u32 {
                 println!("Index mismatch {} != {}", &block.index, &i);
                 return false;
-            } 
+            } else if !block::check_difficulty(&block.hash, block.difficulty) {
+
+            }
         }
         true
     }
