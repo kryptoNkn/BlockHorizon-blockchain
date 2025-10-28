@@ -14,6 +14,8 @@ fn main() {
         blocks: vec![block],
     };
 
+    println!("Verify: {}", &blockchain.verify());
+
     for i in 1..=10 {
         let mut block = Block::new(i,0, last_hash ,0,"Another 
         block!".to_owned(), difficulty);
@@ -22,5 +24,6 @@ fn main() {
         println!("Mined genesis block {:?}", &block);
         last_hash = block.hash.clone();
         blockchain.blocks.push(block);
+        println!("Verify: {}", &blockchain.verify());
     }
 }
