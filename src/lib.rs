@@ -87,3 +87,7 @@ mod blockchain;
 pub use crate::blockchain::Blockchain;
 pub mod transaction;
 pub use crate::transaction::Transaction;
+pub mod wallet;
+use crate::wallet::Wallet;
+use secp256k1::PublicKey;
+use secp256k1::ecdsa::Signature;
