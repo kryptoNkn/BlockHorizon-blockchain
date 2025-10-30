@@ -44,7 +44,6 @@ impl UTXOSet {
                 return Err("Attempt to spend non-existing or already spent output");
             }
         }
-
         
         for input in &tx.inputs {
             self.remove_output(input);
