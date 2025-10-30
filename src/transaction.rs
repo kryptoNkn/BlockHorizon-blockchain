@@ -3,7 +3,7 @@ use std::collections::HashSet;
 use ed25519_dalek::{Signature, VerifyingKey, Verifier};
 use crate::wallet::Wallet;
 
-#[derive(Clone)]
+#[derive(Debug, Clone)]
 pub struct Output {
     pub to_addr: String,
     pub value: u64,

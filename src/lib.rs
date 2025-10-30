@@ -91,3 +91,5 @@ pub mod wallet;
 use crate::wallet::Wallet;
 use secp256k1::PublicKey;
 use secp256k1::ecdsa::Signature;
+mod utxo;
+pub use crate::utxo::UTXOSet;
