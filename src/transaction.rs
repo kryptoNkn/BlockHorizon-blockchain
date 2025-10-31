@@ -3,6 +3,7 @@ use std::collections::HashSet;
 use ed25519_dalek::{Signature, VerifyingKey, Signer, Verifier};
 use crate::wallet::Wallet;
 
+
 #[derive(Clone, Debug)]
 pub struct Output {
     pub to_addr: String,
@@ -18,7 +19,6 @@ impl Hashable for Output {
     }
 }
 
-#[derive(Clone, Debug)]
 pub struct Transaction {
     pub inputs: Vec<Output>,
     pub outputs: Vec<Output>,

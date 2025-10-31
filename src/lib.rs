@@ -90,6 +90,3 @@ pub use crate::transaction::Transaction;
 pub mod wallet;
 mod utxo;
 pub use crate::utxo::UTXOSet;
-mod p2p;
-pub use crate::p2p::Message;
-pub use crate::p2p::P2PNode;
