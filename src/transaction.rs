@@ -82,6 +82,7 @@ impl Transaction {
     pub fn output_hashes(&self) -> HashSet<Hash> {
         self.outputs.iter().map(|o| o.hash()).collect()
     }
+
 }
 
 impl Hashable for Transaction {
