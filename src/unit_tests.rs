@@ -25,4 +25,22 @@ mod tests {
         block.mine();
         assert!(blockchain::check_difficulty(&block.hash, block.difficulty));
     }
+
+    #[test]
+    fn test_transaction_sign_and_verify() {
+        let alice = Wallet::new();
+        let bob = Wallet::new();
+        let mut tx = Transaction {
+            inputs: vec![],
+            outputs: vec![transaction::Output {
+                to_addr: bob.address(),
+                value: 10,
+            }],
+            signature: None,
+            owner_pubkey: None,
+        };
+        tx.sign(&alice);
+        assert!(tx.verify());
+        assert!(tx.is_coinbase()); 
+    }
 }
