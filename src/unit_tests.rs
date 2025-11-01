@@ -43,4 +43,33 @@ mod tests {
         assert!(tx.verify());
         assert!(tx.is_coinbase()); 
     }
+
+    #[test]
+    fn test_utxo_apply_transaction() {
+        let mut utxo_set = UTXOSet::new();
+        let alice = Wallet::new();
+        let bob = Wallet::new();
+
+        let output = transaction::Output {
+            to_addr: alice.address(),
+            value: 50,
+        };
+
+        utxo_set.add_output(&output);
+        assert!(utxo_set.contains(&output));
+
+        let mut tx = Transaction {
+            inputs: vec![output.clone()],
+            outputs: vec![
+                transaction::Output { to_addr: bob.address(), value: 30 },
+                transaction::Output { to_addr: alice.address(), value: 20 },
+            ],
+            signature: None,
+            owner_pubkey: None,
+        };
+
+        tx.sign(&alice);
+        assert!(utxo_set.apply_transaction(&tx).is_ok());
+        assert_eq!(utxo_set.unspent.len(), 2);
+    }
 }
