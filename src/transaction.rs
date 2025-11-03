@@ -109,5 +109,3 @@ impl Hashable for Transaction {
         bytes
     }
 }
-
-// next time

@@ -72,4 +72,36 @@ mod tests {
         assert!(utxo_set.apply_transaction(&tx).is_ok());
         assert_eq!(utxo_set.unspent.len(), 2);
     }
+
+    #[test]
+    fn test_blockchain_add_block() {
+        let difficulty = 0x00ffffffffffffffffffffffffffffffff;
+        let mut blockchain = blockchain::new();
+        let wallet = Wallet::new();
+
+        // Genesis
+        let genesis_tx = Transaction {
+            inputs: vec![],
+            outputs: vec![transaction::Output { to_addr: wallet.address(), value: 50 }],
+            signature: None,
+            owner_pubkey: None,
+        };
+
+        let mut genesis_block = Block::new(0, now(), vec![0; 32], vec![genesis_tx], difficulty);
+        genesis_block.mine();
+        assert!(blockchain.update_with_block(genesis_block).is_ok());
+
+        // Next block
+        let mut block = Block::new(
+            1,
+            now(),
+            blockchain.blocks.last().unwrap().hash.clone(),
+            vec![],
+            difficulty,
+        );
+
+        block.mine();
+        assert!(blockchain.update_with_block(block).is_ok());
+        assert_eq!(blockchain.blocks.len(), 2);
+    }
 }
