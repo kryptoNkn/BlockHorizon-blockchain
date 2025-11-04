@@ -20,3 +20,6 @@ sha2 = "0.10"
 ed25519-dalek = "2.2.0"
 rand = "0.8"
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.37", features = ["full"] }
+actix-web = "4"
