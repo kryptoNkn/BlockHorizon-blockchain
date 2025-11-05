@@ -11,7 +11,6 @@ impl Wallet {
     pub fn new() -> Self {
         let mut rng = OsRng;
         let mut key_bytes = [0u8; 32];
-        rng.fill_bytes(&mut key_bytes);
 
         let signing_key = SigningKey::from_bytes(&key_bytes);
         let verifying_key = signing_key.verifying_key();
