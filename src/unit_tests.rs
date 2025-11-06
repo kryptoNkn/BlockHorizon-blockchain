@@ -16,7 +16,7 @@ mod tests {
             inputs: vec![],
             outputs: vec![transaction::Output {
                 to_addr: "addr_!".to_string(),
-                volue: 50,
+                value: 50,
             }],
             signature: None,
             owner_pubkey: None,
