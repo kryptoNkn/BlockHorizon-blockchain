@@ -44,8 +44,8 @@ src/
 ## How to run
 
 ```bash
-git clone https://github.com/yourusername/blockhorizon.git
-cd blockhorizon
+git clone https://github.com/kryptoNkn/BlockHorizon-blockchain.git
+cd BlockHorizon-blockchain
 cargo run
 ```
 
